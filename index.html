@@ -5,21 +5,24 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Uplight Labs</title>
 <meta name="description" content="Central internal home for what the Uplight marketing team builds with Claude.">
+<link rel="preload" href="/assets/fonts/MarkOT-Book.otf" as="font" type="font/otf" crossorigin>
+<link rel="preload" href="/assets/fonts/MarkOT-Medium.otf" as="font" type="font/otf" crossorigin>
+<link rel="preload" href="/assets/fonts/MarkOT-Bold.otf" as="font" type="font/otf" crossorigin>
 <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
 <header><div class="hwrap">
-  <button class="iconbtn menubtn" id="menubtn" aria-label="Toggle navigation"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <button class="ctl icon menubtn" id="menubtn" aria-label="Toggle navigation"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   <a class="logo" href="#/intro" aria-label="Uplight Labs home"><b>uplight</b><span>labs</span></a>
   <nav class="toplinks" id="topnav" aria-label="Primary"></nav>
   <div class="spacer"></div>
-  <button class="btn" id="searchbtn" aria-label="Search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><span class="hide-sm" style="padding-right:36px">Search docs</span></button>
+  <button class="ctl" id="searchbtn" aria-label="Search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><span class="hide-sm">Search...</span><kbd class="hide-sm">/</kbd></button>
   <span class="pill hide-sm">Internal</span>
-  <button class="iconbtn" id="themebtn" aria-label="Toggle light and dark theme"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+  <button class="ctl icon" id="themebtn" aria-label="Toggle light and dark theme"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
 </div></header>
 
 <div id="search" role="dialog" aria-label="Search"><div class="sbox">
-  <div class="sin"><input id="q" type="text" placeholder="Search pages" aria-label="Search docs"><button class="btn" id="sclose" style="height:28px;font-size:12px">Close</button></div>
+  <div class="sin"><input id="q" type="text" placeholder="Search pages" aria-label="Search docs"><button class="ctl sm" id="sclose">Esc</button></div>
   <div id="results"></div>
 </div></div>
 
@@ -27,7 +30,15 @@
   <aside class="side" id="side" aria-label="Documentation"></aside>
   <main><article>
     <div class="crumb"><span id="cgroup"></span><span>›</span><b id="ctitle"></b></div>
-    <div class="titlerow"><h1 id="h1"></h1><button class="btn" id="copybtn">Copy page</button></div>
+    <div class="titlerow"><h1 id="h1"></h1>
+      <div class="actions" id="actions">
+        <button class="a1" id="copybtn"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg><span id="copylabel">Copy as Markdown</span></button>
+        <button class="a2" id="morebtn" aria-label="More page actions" aria-haspopup="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+        <div class="menu" id="menu" role="menu">
+          <button id="copylink" role="menuitem">Copy page link</button>
+          <a href="https://github.com/uplight-design-dev/claude" target="_blank" rel="noopener" role="menuitem">View source on GitHub</a>
+        </div>
+      </div></div>
     <p class="lead" id="lead"></p>
 
     <section class="page" data-id="intro" data-group="Get started" data-title="Introduction" data-desc="Uplight Labs is the central home for everything the marketing team builds: brand styles, Claude skills, products and templates.">
@@ -112,6 +123,27 @@
       </div>
     </section>
 
+    <section class="page" data-id="components" data-group="Components" data-title="Overview" data-desc="Uplight-styled interface components you can copy into decks, pages and prototypes. Each one is plain HTML, CSS and a little JavaScript.">
+      <h2 id="find">Find a component</h2>
+      <div class="grid2" id="compcards"></div>
+      <h2 id="setup">Setup</h2>
+      <p>Components read a few CSS variables, so they follow light and dark automatically. Copy these into your page first.</p>
+      <div class="code"><div class="codehead"><span class="mono">tokens.css</span></div><pre class="mono">:root{
+  --bg:#fff; --surface:#fafafb; --border:#e6e6ea; --borderStrong:#cfcfd8;
+  --text:#0d0d12; --muted:#5f5f6b;
+}
+:root[data-theme=dark]{
+  --bg:#0e0c13; --surface:#15131c; --border:#26232f; --borderStrong:#3b3748;
+  --text:#f4f3f7; --muted:#a5a2b3;
+}</pre></div>
+      <h2 id="about">About these</h2>
+      <p>Ideas for the patterns come from the Interface category of React Bits Pro. These are Uplight-styled rebuilds: original code, MarkOT-friendly, using the Uplight blue and green.</p>
+    </section>
+    <section class="page" data-id="chroma-card" data-group="Components" data-title="Chroma Card" data-component="chroma-card" data-tag="New"></section>
+    <section class="page" data-id="animated-list" data-group="Components" data-title="Animated List" data-component="animated-list" data-tag="New"></section>
+    <section class="page" data-id="browser-window" data-group="Components" data-title="Browser Window" data-component="browser-window" data-tag="New"></section>
+    <section class="page" data-id="terminal-replay" data-group="Components" data-title="Terminal Replay" data-component="terminal-replay" data-tag="New"></section>
+    <section class="page" data-id="simple-graph" data-group="Components" data-title="Simple Graph" data-component="simple-graph" data-tag="New"></section>
     <section class="page" data-id="products" data-group="Products" data-title="Overview" data-desc="Product information and messaging, in one place." data-soon></section>
     <section class="page" data-id="templates" data-group="Library" data-title="Templates" data-desc="Ready-to-use decks, pages and documents." data-soon></section>
     <section class="page" data-id="prompts" data-group="Library" data-title="Prompts" data-desc="Tested prompts for common marketing tasks." data-soon></section>
@@ -122,6 +154,7 @@
   </article></main>
   <aside class="toc" id="toc" aria-label="On this page"></aside>
 </div>
+<script src="/components.js"></script>
 <script src="/app.js"></script>
 </body>
 </html>
