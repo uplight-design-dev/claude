@@ -4,11 +4,12 @@ Central, internal home for what the corporate marketing team builds with Claude:
 
 ## Layout
 
-- `labs/Main.dc.html` — the Labs docs shell (sidebar, search, light/dark, per-page "Copy page").
+- `index.html`, `styles.css`, `app.js` — the deployable static site (no build step).
+- `labs/` — the Claude Design source of the same shell.
 - `labs/canvas.json` — canvas index for the design file.
 - `assets/fonts/` — local-only MarkOT fonts (gitignored, see its README).
 
 ## Notes
 
-- `Main.dc.html` is a Claude Design file and renders in the Design editor. It is not yet a standalone static site.
+- Deploy: import the repo in Vercel as a static site (Framework: Other, no build command, output directory blank).
 - Fonts are intentionally not in this repo.

@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Uplight Labs</title>
+<meta name="description" content="Central internal home for what the Uplight marketing team builds with Claude.">
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<header><div class="hwrap">
+  <button class="iconbtn menubtn" id="menubtn" aria-label="Toggle navigation"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+  <a class="logo" href="#/intro" aria-label="Uplight Labs home"><b>uplight</b><span>labs</span></a>
+  <nav class="toplinks" id="topnav" aria-label="Primary"></nav>
+  <div class="spacer"></div>
+  <button class="btn" id="searchbtn" aria-label="Search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><span class="hide-sm" style="padding-right:36px">Search docs</span></button>
+  <span class="pill hide-sm">Internal</span>
+  <button class="iconbtn" id="themebtn" aria-label="Toggle light and dark theme"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg></button>
+</div></header>
+
+<div id="search" role="dialog" aria-label="Search"><div class="sbox">
+  <div class="sin"><input id="q" type="text" placeholder="Search pages" aria-label="Search docs"><button class="btn" id="sclose" style="height:28px;font-size:12px">Close</button></div>
+  <div id="results"></div>
+</div></div>
+
+<div class="shell">
+  <aside class="side" id="side" aria-label="Documentation"></aside>
+  <main><article>
+    <div class="crumb"><span id="cgroup"></span><span>›</span><b id="ctitle"></b></div>
+    <div class="titlerow"><h1 id="h1"></h1><button class="btn" id="copybtn">Copy page</button></div>
+    <p class="lead" id="lead"></p>
+
+    <section class="page" data-id="intro" data-group="Get started" data-title="Introduction" data-desc="Uplight Labs is the central home for everything the marketing team builds: brand styles, Claude skills, products and templates.">
+      <h2 id="what">What is inside</h2>
+      <p>Labs is organized by what you want to do, not by who built it. Start with the area closest to your task.</p>
+      <div class="grid2">
+        <a class="card" href="#/colors"><b>Brand styles</b><span>Colors, typography and logo guidance.</span></a>
+        <a class="card" href="#/skills"><b>Skills</b><span>Packaged instructions that teach Claude how Uplight works.</span></a>
+        <a class="card" href="#/products"><b>Products</b><span>Product facts and messaging.</span></a>
+        <a class="card" href="#/templates"><b>Templates</b><span>Starting points for decks, pages and documents.</span></a>
+        <a class="card" href="#/prompts"><b>Prompts</b><span>Tested prompts for everyday marketing work.</span></a>
+        <a class="card" href="#/resources"><b>Resources</b><span>Guides, links and reference material.</span></a>
+      </div>
+      <h2 id="anatomy">Anatomy of a skill</h2>
+      <p>A skill is a folder Claude reads before it starts a task. Instructions live in one file and everything else is optional, so a brand skill can carry logos, fonts and rules in one package.</p>
+      <div class="code"><div class="codehead"><span class="mono">typical layout</span></div><pre class="mono">uplight-brand/
+├── SKILL.md          instructions Claude reads first
+├── assets/           logos, fonts, patterns
+└── references/       longer guidance, loaded on demand</pre></div>
+      <h2 id="claude-flow">Built for Claude workflows</h2>
+      <p>Every page in Labs is plain, structured text. Use <strong>Copy page</strong> at the top of any page to grab it as Markdown and drop it into a Claude chat or project as context.</p>
+      <h2 id="access">Access</h2>
+      <p>Uplight Labs is an internal resource for the corporate marketing team and the wider Uplight team. Brand assets, including the MarkOT typeface, are licensed for internal use only.</p>
+    </section>
+
+    <section class="page" data-id="claude" data-group="Get started" data-title="Using Claude with Uplight" data-desc="How to put Uplight skills and brand rules to work in Claude so output stays consistent.">
+      <h2 id="steps">Three steps</h2>
+      <div class="box">
+        <div class="step"><i>1</i><div><b>Find what you need</b><p>Browse the Skills catalog or the Brand section for the asset or workflow you want.</p></div></div>
+        <div class="step"><i>2</i><div><b>Bring it into Claude</b><p>Add the skill to your Claude account, or use Copy page to paste a guide into a chat as context.</p></div></div>
+        <div class="step"><i>3</i><div><b>Ask for the work</b><p>Describe the deck, page or asset you need. Claude applies the brand rules as it builds.</p></div></div>
+      </div>
+      <h2 id="notes">Notes</h2>
+      <div class="callout"><strong style="color:var(--text);font-weight:500">Placeholder.</strong> Replace these steps with Uplight's exact setup instructions once they are finalized.</div>
+    </section>
+
+    <section class="page" data-id="contribute" data-group="Get started" data-title="Adding to Labs" data-desc="How to submit a new skill, template or brand asset to Labs." data-soon></section>
+
+    <section class="page" data-id="colors" data-group="Brand" data-title="Colors" data-desc="The Uplight palette and gradients, with values you can copy.">
+      <h2 id="palette">UCC 2027 palette</h2>
+      <p>Five colors. Select a swatch to copy its hex value.</p>
+      <div class="swatches">
+        <button class="sw" data-hex="#00e297"><i style="background:#00e297"></i><span>Green<small>#00e297</small></span></button>
+        <button class="sw" data-hex="#0047ff"><i style="background:#0047ff"></i><span>Blue<small>#0047ff</small></span></button>
+        <button class="sw" data-hex="#000f9f"><i style="background:#000f9f"></i><span>Deep blue<small>#000f9f</small></span></button>
+        <button class="sw" data-hex="#000000"><i style="background:#000"></i><span>Black<small>#000000</small></span></button>
+        <button class="sw" data-hex="#ffffff"><i style="background:#fff;border-bottom:1px solid var(--border)"></i><span>White<small>#ffffff</small></span></button>
+      </div>
+      <h2 id="gradients">Gradients</h2>
+      <p>Examples built from the palette. Confirm exact stops against the brand skill before use.</p>
+      <div class="grid2"><div style="height:88px;border-radius:12px;background:linear-gradient(90deg,#0047ff,#00e297)"></div><div style="height:88px;border-radius:12px;background:linear-gradient(90deg,#000f9f,#0047ff)"></div></div>
+    </section>
+
+    <section class="page" data-id="type" data-group="Brand" data-title="Typography" data-desc="MarkOT weights and the type scale used across Uplight materials.">
+      <h2 id="family">MarkOT</h2>
+      <div class="box" style="background:var(--surface);padding:28px;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap"><span style="font-size:96px;line-height:1;font-weight:700;letter-spacing:-.04em">Aa</span><span style="max-width:300px;font-size:14px;line-height:1.6;color:var(--muted)">Licensed to Uplight. Use for internal work and brand output only.</span></div>
+      <h2 id="weights">Weights</h2>
+      <div class="box">
+        <div class="row"><span style="font-size:26px;font-weight:400">Clean energy, simply managed</span><small class="mono">Book · 400</small></div>
+        <div class="row"><span style="font-size:26px;font-weight:500">Clean energy, simply managed</span><small class="mono">Medium · 500</small></div>
+        <div class="row"><span style="font-size:26px;font-weight:700">Clean energy, simply managed</span><small class="mono">Bold · 700</small></div>
+      </div>
+      <h2 id="scale">Scale</h2>
+      <p>The scale used by this Labs site.</p>
+      <div class="box">
+        <div class="row"><span style="font-size:40px;font-weight:700;letter-spacing:-.03em;line-height:1.1">Heading</span><small class="mono">40 / Bold</small></div>
+        <div class="row"><span style="font-size:24px;font-weight:500;letter-spacing:-.02em">Section title</span><small class="mono">24 / Medium</small></div>
+        <div class="row"><span style="font-size:16px">Body copy reads at sixteen pixels.</span><small class="mono">16 / Book</small></div>
+        <div class="row"><span style="font-size:13px;color:var(--muted)">Caption and metadata</span><small class="mono">13 / Book</small></div>
+      </div>
+    </section>
+
+    <section class="page" data-id="logo" data-group="Brand" data-title="Logo" data-desc="Logo files, clear space and usage rules." data-soon></section>
+
+    <section class="page" data-id="skills" data-group="Skills" data-title="Catalog" data-desc="Every Claude skill Uplight maintains, with its current status.">
+      <h2 id="catalog">Catalog</h2>
+      <div class="table">
+        <div class="tr th"><span>Skill</span><span>What it does</span><span>Status</span></div>
+        <div class="tr"><b>Uplight UCC Brand</b><span>Applies the UCC 2027 logo, morph mark and pattern, five-color palette, gradients and MarkOT type.</span><span><i class="dot ok"></i>Available</span></div>
+        <div class="tr"><span>[Next skill]</span><span>Description goes here.</span><span><i class="dot"></i>Planned</span></div>
+        <div class="tr"><span>[Next skill]</span><span>Description goes here.</span><span><i class="dot"></i>Planned</span></div>
+      </div>
+    </section>
+
+    <section class="page" data-id="products" data-group="Products" data-title="Overview" data-desc="Product information and messaging, in one place." data-soon></section>
+    <section class="page" data-id="templates" data-group="Library" data-title="Templates" data-desc="Ready-to-use decks, pages and documents." data-soon></section>
+    <section class="page" data-id="prompts" data-group="Library" data-title="Prompts" data-desc="Tested prompts for common marketing tasks." data-soon></section>
+    <section class="page" data-id="resources" data-group="Library" data-title="Resources" data-desc="Links, guides and reference material." data-soon></section>
+
+    <div class="pn" id="pn"></div>
+    <footer><span>Uplight Labs · Internal</span><span>Built by the corporate marketing team</span></footer>
+  </article></main>
+  <aside class="toc" id="toc" aria-label="On this page"></aside>
+</div>
+<script src="/app.js"></script>
+</body>
+</html>
