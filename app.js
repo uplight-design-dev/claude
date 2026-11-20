@@ -4,13 +4,25 @@
   var esc = function (s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); };
   var C = window.ULComponents || {};
 
+  /* component pages are generated from components*.js */
+  var anchor = $('#pn');
+  Object.keys(C).forEach(function (k) {
+    var c = C[k], sec = document.createElement('section');
+    sec.className = 'page'; sec.dataset.id = k; sec.dataset.group = c.group || 'Interface';
+    sec.dataset.title = c.title; sec.dataset.component = k; sec.dataset.tag = 'New';
+    anchor.parentNode.insertBefore(sec, anchor);
+  });
+
   var pages = $$('.page').map(function (el) {
     return { el: el, id: el.dataset.id, group: el.dataset.group, title: el.dataset.title, desc: el.dataset.desc,
       soon: el.hasAttribute('data-soon'), comp: el.dataset.component || '', tag: el.hasAttribute('data-soon') ? 'Soon' : (el.dataset.tag || '') };
   });
   pages.forEach(function (p) { if (p.comp && C[p.comp]) p.desc = C[p.comp].desc; });
-  var groups = ['Get started', 'Brand', 'Skills', 'Components', 'Products', 'Library'];
-  var top = [['Docs', 'intro', 'Get started'], ['Brand', 'colors', 'Brand'], ['Skills', 'skills', 'Skills'], ['Components', 'components', 'Components'], ['Products', 'products', 'Products']];
+  var groups = ['Get started', 'Brand', 'Skills', 'Components', 'Micro Interactions', 'Interface', 'Backgrounds', 'Blocks', 'Products', 'Library'];
+  var compGroups = ['Components', 'Micro Interactions', 'Interface', 'Backgrounds', 'Blocks'];
+  var top = [['Docs', 'intro', ['Get started']], ['Brand', 'colors', ['Brand']], ['Skills', 'skills', ['Skills']], ['Components', 'components', compGroups], ['Products', 'products', ['Products']]];
+  pages = pages.map(function (p, i) { p.n = i; return p; })
+    .sort(function (a, b) { return (groups.indexOf(a.group) - groups.indexOf(b.group)) || (a.n - b.n); });
   var cur = pages[0];
   var ICON_GRID = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>';
 
@@ -35,7 +47,7 @@
   pages.forEach(function (p) {
     if (!p.comp || !C[p.comp]) return;
     var c = C[p.comp];
-    p.el.innerHTML = '<h2 id="preview">Preview</h2><div class="demo">' +
+    p.el.innerHTML = '<h2 id="preview">Preview</h2><div class="demo' + (c.wide ? ' wide' : '') + (c.flush ? ' flush' : '') + '">' +
       (c.replay ? '<button class="ctl sm replay">Replay</button>' : '') +
       '<div class="stage" data-stage></div></div>' +
       '<p style="margin-top:16px">' + c.usage + '</p>' +
@@ -63,8 +75,13 @@
   });
 
   /* ---- components overview cards ---- */
-  $('#compcards').innerHTML = pages.filter(function (p) { return p.comp; }).map(function (p) {
-    return '<a class="card" href="#/' + p.id + '"><b>' + p.title + '<span class="tag" style="margin-left:2px">' + p.tag + '</span></b><span>' + p.desc + '</span></a>';
+  $('#compcards').innerHTML = compGroups.slice(1).map(function (g) {
+    var list = pages.filter(function (p) { return p.comp && p.group === g; });
+    if (!list.length) return '';
+    var id = g.toLowerCase().replace(/[^a-z]+/g, '-');
+    return '<h2 id="' + id + '">' + g + '</h2><div class="grid2">' + list.map(function (p) {
+      return '<a class="card" href="#/' + p.id + '"><b>' + p.title + '<span class="tag">' + p.tag + '</span></b><span>' + p.desc + '</span></a>';
+    }).join('') + '</div>';
   }).join('');
 
   /* ---- nav ---- */
@@ -74,7 +91,7 @@
         return '<a class="navitem" data-id="' + p.id + '" href="#/' + p.id + '"><span>' + p.title + '</span>' + (p.tag ? '<span class="tag">' + p.tag + '</span>' : '') + '</a>';
       }).join('') + '</div>';
     }).join('');
-  $('#topnav').innerHTML = top.map(function (t) { return '<a class="toplink" data-g="' + t[2] + '" href="#/' + t[1] + '">' + t[0] + '</a>'; }).join('');
+  $('#topnav').innerHTML = top.map(function (t) { return '<a class="toplink" data-g="' + t[2].join('|') + '" href="#/' + t[1] + '">' + t[0] + '</a>'; }).join('');
 
   /* ---- markdown export ---- */
   function toMarkdown() {
@@ -111,7 +128,7 @@
     $('#cgroup').textContent = cur.group; $('#ctitle').textContent = cur.title;
     document.title = cur.title + ' · Uplight Labs';
     $$('.navitem').forEach(function (a) { a.classList.toggle('active', a.dataset.id === cur.id); });
-    $$('.toplink').forEach(function (a) { a.classList.toggle('active', a.dataset.g === cur.group); });
+    $$('.toplink').forEach(function (a) { a.classList.toggle('active', a.dataset.g.split('|').indexOf(cur.group) > -1); });
     var hs = $$('h2', cur.el);
     $('#toc').innerHTML = '<b>On this page</b>' + hs.map(function (h) { return '<a href="#' + h.id + '" data-anchor="' + h.id + '">' + h.textContent + '</a>'; }).join('');
     spy = hs;

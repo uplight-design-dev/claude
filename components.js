@@ -4,7 +4,7 @@
 window.ULComponents = {
 
   'chroma-card': {
-    title: 'Chroma Card',
+    group: 'Interface', title: 'Chroma Card',
     desc: 'A card with a soft Uplight blue-to-green spotlight that follows the pointer.',
     usage: 'Wrap any content in <code>.ul-card</code>. The glow position is driven by two CSS variables, so it costs one event listener per card.',
     html: `<div class="ul-grid">
@@ -42,35 +42,8 @@ window.ULComponents = {
     vars: [['--x / --y', 'Glow position, set by the script'], ['rgba(0,71,255,.16)', 'Glow start color (Uplight blue)'], ['rgba(0,226,151,.10)', 'Glow end color (Uplight green)'], ['260px', 'Glow radius']]
   },
 
-  'animated-list': {
-    title: 'Animated List',
-    desc: 'A list whose items rise in one after another. Pure CSS, no script.',
-    usage: 'Give each <code>li</code> an index through <code>--i</code>. The stagger is <code>--i</code> times 140ms. Reduced-motion users see the final state immediately.',
-    replay: true,
-    html: `<ul class="ul-list">
-  <li style="--i:0"><span class="ul-check"></span>Brand colors applied</li>
-  <li style="--i:1"><span class="ul-check"></span>MarkOT set as the typeface</li>
-  <li style="--i:2"><span class="ul-check"></span>Logo placed with clear space</li>
-  <li style="--i:3"><span class="ul-check"></span>Contrast checked</li>
-</ul>`,
-    css: `.ul-list{display:flex;flex-direction:column;gap:8px;margin:0;padding:0;list-style:none}
-.ul-list li{display:flex;align-items:center;gap:12px;padding:12px 14px;
-  border:1px solid var(--border);border-radius:10px;background:var(--bg);
-  font-size:14px;color:var(--text);opacity:0;transform:translateY(10px);
-  animation:ul-in .45s cubic-bezier(.23,1,.32,1) forwards;
-  animation-delay:calc(var(--i) * 140ms)}
-.ul-check{position:relative;flex:none;width:18px;height:18px;border-radius:99px;
-  background:linear-gradient(135deg,#0047ff,#00e297)}
-.ul-check::after{content:"";position:absolute;left:6px;top:3px;width:4px;height:8px;
-  border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg)}
-@keyframes ul-in{to{opacity:1;transform:none}}
-@media(prefers-reduced-motion:reduce){.ul-list li{animation:none;opacity:1;transform:none}}`,
-    init: null,
-    vars: [['--i', 'Item index, multiplies the stagger'], ['140ms', 'Delay between items'], ['.45s', 'Duration of each item']]
-  },
-
   'browser-window': {
-    title: 'Browser Window',
+    group: 'Interface', title: 'Browser Window',
     desc: 'A browser frame for showing a page, screenshot or prototype in context.',
     usage: 'Put anything inside <code>.ul-browser-body</code>: an image, an iframe or live markup. Change the address text in the bar.',
     html: `<div class="ul-browser">
@@ -95,7 +68,7 @@ window.ULComponents = {
   },
 
   'terminal-replay': {
-    title: 'Terminal Replay',
+    group: 'Interface', title: 'Terminal Replay',
     desc: 'A terminal that types commands and prints their output, line by line.',
     usage: 'Describe the session in <code>data-lines</code> as <code>["cmd", text]</code> and <code>["out", text]</code> pairs. The terminal is always dark, in both themes.',
     replay: true,
@@ -146,7 +119,7 @@ window.ULComponents = {
   },
 
   'simple-graph': {
-    title: 'Simple Graph',
+    group: 'Interface', title: 'Simple Graph',
     desc: 'A line graph that draws itself in, with an Uplight blue-to-green stroke.',
     usage: 'Replace the two <code>d</code> attributes with your own path. Keep <code>pathLength="1"</code> on the line so the draw-in works at any length. The numbers here are sample data.',
     replay: true,

@@ -46,7 +46,7 @@ a{color:inherit;text-decoration:none}
 .ctl.primary{color:var(--text)}
 
 /* ---------- Header ---------- */
-header{position:sticky;top:0;z-index:20;height:60px;background:var(--bg);border-bottom:1px solid var(--border)}
+body>header{position:sticky;top:0;z-index:20;height:60px;background:var(--bg);border-bottom:1px solid var(--border)}
 .hwrap{height:100%;max-width:1440px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:12px}
 .logo,.logo:hover,.logo:focus{display:flex;align-items:baseline;gap:6px;font-size:22px;letter-spacing:-.03em;line-height:1;text-decoration:none;color:var(--text)}
 .logo b{font-weight:700;text-decoration:none}
@@ -164,3 +164,9 @@ footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--border);displ
 
 /* ---------- Uplight components (shown on the Components pages) ---------- */
 p code,.step code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.86em;padding:2px 6px;border-radius:6px;background:var(--ctl);color:var(--text)}
+.demo.wide{padding:44px 16px 16px}.demo.wide>.stage{max-width:none}
+.demo.flush{padding:0;display:block;min-height:0;background:var(--bg);background-image:none;overflow:hidden}
+.demo.flush>.stage{max-width:none}
+.demo.flush .replay,.demo.wide .replay{z-index:3}
+.demo.wide.flush{padding:0}
+.card b .tag{font-size:9px;line-height:1;color:var(--muted)}
