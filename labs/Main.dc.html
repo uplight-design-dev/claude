@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Uplight Labs</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'MarkOT';src:url(/_blob/d9f6c69478c5b751950dd7b160afc039) format('opentype');font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:'MarkOT';src:url(/_blob/fb7809b84c6a196ceb549cd87bce7b78) format('opentype');font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:'MarkOT';src:url(/_blob/9f84ccc1c8b3defcb3a103482b12e1c8) format('opentype');font-weight:700;font-style:normal;font-display:swap}
+body{margin:0}
+a{color:inherit}
+.lab{--bg:#ffffff;--surface:#fafafb;--hover:#f2f2f5;--border:#e6e6ea;--borderStrong:#cfcfd8;--text:#0d0d12;--muted:#5f5f6b;--codebg:#0f0e14;--codetext:#e8e7ee;--codemuted:#9a97a8;--codeborder:#25232e;--inv:#0d0d12;--invtext:#ffffff;
+  background:var(--bg);color:var(--text);font-family:'MarkOT',system-ui,-apple-system,'Segoe UI',sans-serif;-webkit-font-smoothing:antialiased;min-height:100%}
+.lab.dark{--bg:#0e0c13;--surface:#15131c;--hover:#1c1a25;--border:#26232f;--borderStrong:#3b3748;--text:#f4f3f7;--muted:#a5a2b3;--codebg:#15131c;--codetext:#e8e7ee;--codemuted:#9a97a8;--codeborder:#26232f;--inv:#f4f3f7;--invtext:#0e0c13}
+.lab *{box-sizing:border-box}
+.lab button{font:inherit;color:inherit;cursor:pointer;background:none;border:0;padding:0;text-align:left}
+.lab :focus-visible{outline:2px solid #0047ff;outline-offset:2px;border-radius:6px}
+.lab.dark :focus-visible{outline-color:#4d82ff}
+.lab .mono{font-family:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace}
+.lab .navitem{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;padding:7px 10px;border-radius:8px;font-size:14px;color:var(--muted);transition:background .12s,color .12s}
+.lab .navitem:hover{background:var(--hover);color:var(--text)}
+.lab .navitem.active{background:var(--hover);color:var(--text);font-weight:500}
+.lab .toplink{padding:6px 10px;border-radius:8px;font-size:14px;color:var(--muted);transition:color .12s,background .12s}
+.lab .toplink:hover{color:var(--text);background:var(--hover)}
+.lab .toplink.active{color:var(--text)}
+.lab .iconbtn{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;border:1px solid var(--border);color:var(--muted);transition:border-color .12s,color .12s,background .12s}
+.lab .iconbtn:hover{color:var(--text);border-color:var(--borderStrong);background:var(--hover)}
+.lab .card{display:flex;flex-direction:column;gap:10px;padding:18px;border:1px solid var(--border);border-radius:12px;background:var(--bg);transition:border-color .15s,background .15s}
+.lab .card:hover{border-color:var(--borderStrong);background:var(--surface)}
+.lab .btn{display:inline-flex;align-items:center;gap:8px;height:34px;padding:0 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;color:var(--text);transition:border-color .12s,background .12s}
+.lab .btn:hover{border-color:var(--borderStrong);background:var(--hover)}
+.lab .tocitem{display:block;padding:4px 0;font-size:13px;color:var(--muted);text-decoration:none;transition:color .12s}
+.lab .tocitem:hover{color:var(--text)}
+.lab .pagelink{display:flex;flex-direction:column;gap:4px;flex:1 1 220px;padding:16px 18px;border:1px solid var(--border);border-radius:12px;transition:border-color .15s,background .15s}
+.lab .pagelink:hover{border-color:var(--borderStrong);background:var(--surface)}
+.lab .prose h2{scroll-margin-top:84px}
+.lab .side{width:248px;flex:0 0 248px;padding:28px 16px 40px 0;position:sticky;top:60px;align-self:flex-start;max-height:calc(100vh - 60px);overflow-y:auto}
+.lab .toc{width:208px;flex:0 0 208px;padding:32px 0 40px 24px;position:sticky;top:60px;align-self:flex-start}
+.lab .main{flex:1 1 0;min-width:0;padding:40px 48px 64px}
+.lab .menubtn{display:none}
+.lab .toplinks{display:flex;gap:2px}
+@media (max-width:1179px){.lab .toc{display:none}}
+@media (max-width:899px){
+  .lab .side{display:none;position:static;width:100%;flex:1 1 100%;max-height:none;padding:16px 0;border-bottom:1px solid var(--border)}
+  .lab .side.open{display:block}
+  .lab .main{padding:28px 0 48px;flex:1 1 100%}
+  .lab .menubtn{display:inline-flex}
+  .lab .toplinks{display:none}
+  .lab .shellrow{flex-wrap:wrap}
+}
+@media (max-width:639px){
+  .lab .grid2{grid-template-columns:minmax(0,1fr) !important}
+  .lab .swatches{grid-template-columns:repeat(2,minmax(0,1fr)) !important}
+  .lab .h1{font-size:32px !important}
+  .lab .searchlabel{display:none}
+  .lab .hpad{padding-left:16px !important;padding-right:16px !important}
+}
+</style>
+</helmet>
+
+<div class="lab {{themeClass}}">
+
+  <header style="position:sticky;top:0;z-index:20;height:60px;display:flex;align-items:center;border-bottom:1px solid var(--border);background:var(--bg)">
+    <div class="hpad" style="width:100%;max-width:1440px;margin:0 auto;padding:0 24px;display:flex;align-items:center;gap:20px">
+      <button class="iconbtn menubtn" onClick="{{toggleMenu}}" aria-label="Toggle navigation">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+      </button>
+      <button onClick="{{goHome}}" aria-label="Uplight Labs home" style="display:flex;align-items:baseline;gap:7px;font-size:22px;letter-spacing:-0.03em;line-height:1">
+        <span style="font-weight:700">uplight</span><span style="font-weight:400;background:linear-gradient(90deg,#0047ff,#00e297);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent">labs</span>
+      </button>
+      <nav class="toplinks" aria-label="Primary" style="margin-left:12px">
+        <sc-for list="{{topNav}}" as="n" hint-placeholder-count="4">
+          <button class="toplink {{n.cls}}" onClick="{{n.go}}">{{n.label}}</button>
+        </sc-for>
+      </nav>
+      <div style="flex:1 1 0"></div>
+      <button class="btn" onClick="{{toggleSearch}}" aria-label="Search" style="height:36px;min-width:36px;justify-content:center;color:var(--muted)">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+        <span class="searchlabel" style="padding-right:36px">Search docs</span>
+      </button>
+      <span class="searchlabel" style="font-size:12px;color:var(--muted);border:1px solid var(--border);border-radius:999px;padding:4px 10px">Internal</span>
+      <button class="iconbtn" onClick="{{toggleTheme}}" aria-label="Toggle light and dark theme">
+        <sc-if value="{{isDark}}" hint-placeholder-val="{{ false }}">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+        </sc-if>
+        <sc-if value="{{isLight}}" hint-placeholder-val="{{ true }}">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"></path></svg>
+        </sc-if>
+      </button>
+    </div>
+  </header>
+
+  <sc-if value="{{searchOpen}}" hint-placeholder-val="{{ false }}">
+    <div style="position:relative;z-index:30">
+      <div style="position:absolute;left:0;right:0;top:8px;display:flex;justify-content:center;padding:0 16px">
+        <div style="width:100%;max-width:560px;background:var(--bg);border:1px solid var(--borderStrong);border-radius:14px;box-shadow:0 18px 50px rgba(10,10,20,0.18);overflow:hidden">
+          <div style="display:flex;align-items:center;gap:10px;padding:0 14px;border-bottom:1px solid var(--border)">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+            <input type="text" aria-label="Search docs" placeholder="Search pages" autofocus onInput="{{onQuery}}" style="flex:1 1 0;min-width:0;height:48px;border:0;outline:0;background:transparent;color:var(--text);font:inherit;font-size:15px">
+            <button class="btn" onClick="{{toggleSearch}}" style="height:28px;font-size:12px">Close</button>
+          </div>
+          <div style="max-height:320px;overflow-y:auto;padding:8px">
+            <sc-for list="{{results}}" as="r" hint-placeholder-count="4">
+              <button class="navitem" onClick="{{r.go}}" style="padding:10px 12px;flex-direction:column;align-items:flex-start;gap:2px">
+                <span style="color:var(--text);font-size:14px">{{r.title}}</span>
+                <span style="font-size:12px">{{r.group}} · {{r.desc}}</span>
+              </button>
+            </sc-for>
+            <sc-if value="{{noResults}}" hint-placeholder-val="{{ false }}">
+              <div style="padding:20px 12px;font-size:14px;color:var(--muted)">No pages match that search.</div>
+            </sc-if>
+          </div>
+        </div>
+      </div>
+    </div>
+  </sc-if>
+
+  <div class="hpad shellrow" style="max-width:1440px;margin:0 auto;padding:0 24px;display:flex;align-items:flex-start">
+
+    <aside class="side {{sideClass}}" aria-label="Documentation">
+      <sc-for list="{{groups}}" as="g" hint-placeholder-count="4">
+        <div style="margin-bottom:22px">
+          <div style="padding:0 10px 8px;font-size:12px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--text)">{{g.label}}</div>
+          <sc-for list="{{g.items}}" as="it" hint-placeholder-count="3">
+            <button class="navitem {{it.cls}}" onClick="{{it.go}}">
+              <span>{{it.title}}</span>
+              <sc-if value="{{it.soon}}" hint-placeholder-val="{{ false }}">
+                <span style="font-size:11px;color:var(--muted);border:1px solid var(--border);border-radius:999px;padding:1px 7px">Soon</span>
+              </sc-if>
+            </button>
+          </sc-for>
+        </div>
+      </sc-for>
+    </aside>
+
+    <main class="main">
+      <article class="prose" style="max-width:720px">
+
+        <div style="display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-bottom:14px">
+          <span>{{pageGroup}}</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"></path></svg>
+          <span style="color:var(--text)">{{pageTitle}}</span>
+        </div>
+
+        <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap">
+          <h1 class="h1" style="margin:0;font-size:40px;line-height:1.1;font-weight:700;letter-spacing:-0.03em">{{pageTitle}}</h1>
+          <button class="btn" onClick="{{copyPage}}" aria-label="Copy this page as Markdown for Claude">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"></rect><path d="M5 15V5a2 2 0 0 1 2-2h10"></path></svg>
+            <span>{{copyPageLabel}}</span>
+          </button>
+        </div>
+        <p style="margin:16px 0 0;font-size:18px;line-height:1.6;color:var(--muted)">{{pageDesc}}</p>
+
+        <!-- ============ INTRODUCTION ============ -->
+        <sc-if value="{{isIntro}}" hint-placeholder-val="{{ true }}">
+          <h2 id="what" style="margin:48px 0 8px;font-size:24px;font-weight:500;letter-spacing:-0.02em">What is inside</h2>
+          <p style="margin:0 0 20px;font-size:16px;line-height:1.7;color:var(--muted)">Labs is organized by what you want to do, not by who built it. Start with the area closest to your task.</p>
+          <div class="grid2" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+            <sc-for list="{{cards}}" as="c" hint-placeholder-count="6">
+              <button class="card" onClick="{{c.go}}">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="{{c.icon}}"></path></svg>
+                <span style="font-size:16px;font-weight:500">{{c.title}}</span>
+                <span style="font-size:14px;line-height:1.55;color:var(--muted)">{{c.text}}</span>
+              </button>
+            </sc-for>
+          </div>
+
+          <h2 id="anatomy" style="margin:56px 0 8px;font-size:24px;font-weight:500;letter-spacing:-0.02em">Anatomy of a skill</h2>
+          <p style="margin:0 0 20px;font-size:16px;line-height:1.7;color:var(--muted)">A skill is a folder Claude reads before it starts a task. Instructions live in one file and everything else is optional, so a brand skill can carry logos, fonts and rules in one package.</p>
+          <div style="border:1px solid var(--codeborder);border-radius:12px;background:var(--codebg);overflow:hidden">
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-bottom:1px solid var(--codeborder);font-size:12px;color:var(--codemuted)">
+              <span class="mono">typical layout</span>
+              <button onClick="{{copyTree}}" style="font-size:12px;color:var(--codemuted)" aria-label="Copy code">{{treeLabel}}</button>
+            </div>
+            <pre class="mono" style="margin:0;padding:16px 18px;overflow-x:auto;font-size:13px;line-height:1.75;color:var(--codetext)">uplight-brand/
+├── SKILL.md          instructions Claude reads first
+├── assets/           logos, fonts, patterns
+└── references/       longer guidance, loaded on demand</pre>
+          </div>
+
+          <h2 id="claude-flow" style="margin:56px 0 8px;font-size:24px;font-weight:500;letter-spacing:-0.02em">Built for Claude workflows</h2>
+          <p style="margin:0 0 16px;font-size:16px;line-height:1.7;color:var(--muted)">Every page in Labs is plain, structured text. Use <strong style="color:var(--text);font-weight:500">Copy page</strong> at the top of any page to grab it as Markdown and drop it into a Claude chat or project as context.</p>
+          <button class="pagelink" onClick="{{goClaude}}" style="max-width:100%">
+            <span style="font-size:14px;color:var(--muted)">Next</span>
+            <span style="font-size:16px;font-weight:500">Using Claude with Uplight →</span>
+          </button>
+
+          <h2 id="access" style="margin:56px 0 8px;font-size:24px;font-weight:500;letter-spacing:-0.02em">Access</h2>
+          <p style="margin:0;font-size:16px;line-height:1.7;color:var(--muted)">Uplight Labs is an internal resource for the corporate marketing team and the wider Uplight team. Brand assets, including the MarkOT typeface, are licensed for internal use only.</p>
+        </sc-if>
+
+        <!-- ============ USING CLAUDE ============ -->
+        <sc-if value="{{isClaude}}" hint-placeholder-val="{{ false }}">
+          <h2 id="steps" style="margin:48px 0 20px;font-size:24px;font-weight:500;letter-spacing:-0.02em">Three steps</h2>
+          <div style="display:flex;flex-direction:column;gap:0;border:1px solid var(--border);border-radius:12px;overflow:hidden">
+            <div style="display:flex;gap:16px;padding:20px;border-bottom:1px solid var(--border)">
+              <span style="flex:0 0 28px;height:28px;border:1px solid var(--borderStrong);border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500">1</span>
+              <div><div style="font-size:16px;font-weight:500">Find what you need</div><p style="margin:6px 0 0;font-size:15px;line-height:1.65;color:var(--muted)">Browse the Skills catalog or the Brand section for the asset or workflow you want.</p></div>
+            </div>
+            <div style="display:flex;gap:16px;padding:20px;border-bottom:1px solid var(--border)">
+              <span style="flex:0 0 28px;height:28px;border:1px solid var(--borderStrong);border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500">2</span>
+              <div><div style="font-size:16px;font-weight:500">Bring it into Claude</div><p style="margin:6px 0 0;font-size:15px;line-height:1.65;color:var(--muted)">Add the skill to your Claude account, or use Copy page to paste a guide into a chat as context.</p></div>
+            </div>
+            <div style="display:flex;gap:16px;padding:20px">
+              <span style="flex:0 0 28px;height:28px;border:1px solid var(--borderStrong);border-radius:999px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500">3</span>
+              <div><div style="font-size:16px;font-weight:500">Ask for the work</div><p style="margin:6px 0 0;font-size:15px;line-height:1.65;color:var(--muted)">Describe the deck, page or asset you need. Claude applies the brand rules as it builds.</p></div>
+            </div>
+          </div>
+          <h2 id="notes" style="margin:48px 0 12px;font-size:24px;font-weight:500;letter-spacing:-0.02em">Notes</h2>
+          <div style="padding:16px 18px;border:1px solid var(--border);border-radius:12px;background:var(--surface);font-size:15px;line-height:1.65;color:var(--muted)">
+            <strong style="color:var(--text);font-weight:500">Placeholder.</strong> Replace these steps with Uplight's exact setup instructions once they are finalized.
+          </div>
+        </sc-if>
+
+        <!-- ============ COLORS ============ -->
+        <sc-if value="{{isColors}}" hint-placeholder-val="{{ false }}">
+          <h2 id="palette" style="margin:48px 0 8px;font-size:24px;font-weight:500;letter-spacing:-0.02em">UCC 2027 palette</h2>
+          <p style="margin:0 0 20px;font-size:16px;line-height:1.7;color:var(--muted)">Five colors. Select a swatch to copy its hex value.</p>
+          <div class="swatches" style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px">
+            <button onClick="{{copyG}}" style="display:flex;flex-direction:column;border:1px solid var(--border);border-radius:12px;overflow:hidden" aria-label="Copy green hex">
+              <span style="height:96px;background:#00e297"></span>
+              <span style="padding:10px 12px"><span style="display:block;font-size:14px;font-weight:500">Green</span><span class="mono" style="font-size:12px;color:var(--muted)">{{lblG}}</span></span>
+            </button>
+            <button onClick="{{copyB}}" style="display:flex;flex-direction:column;border:1px solid var(--border);border-radius:12px;overflow:hidden" aria-label="Copy blue hex">
+              <span style="height:96px;background:#0047ff"></span>
+              <span style="padding:10px 12px"><span style="display:block;font-size:14px;font-weight:500">Blue</span><span class="mono" style="font-size:12px;color:var(--muted)">{{lblB}}</span></span>
+            </button>
+            <button onClick="{{copyN}}" style="display:flex;flex-direction:column;border:1px solid var(--border);border-radius:12px;overflow:hidden" aria-label="Copy deep blue hex">
+              <span style="height:96px;background:#000f9f"></span>
+              <span style="padding:10px 12px"><span style="display:block;font-size:14px;font-weight:500">Deep blue</span><span class="mono" style="font-size:12px;color:var(--muted)">{{lblN}}</span></span>
+            </button>
+            <button onClick="{{copyK}}" style="display:flex;flex-direction:column;border:1px solid var(--border);border-radius:12px;overflow:hidden" aria-label="Copy black hex">
+              <span style="height:96px;background:#000000"></span>
+              <span style="padding:10px 12px"><span style="display:block;font-size:14px;font-weight:500">Black</span><span class="mono" style="font-size:12px;color:var(--muted)">{{lblK}}</span></span>
+            </button>
+            <button onClick="{{copyW}}" style="display:flex;flex-direction:column;border:1px solid var(--border);border-radius:12px;overflow:hidden" aria-label="Copy white hex">
+              <span style="height:96px;background:#ffffff;border-bottom:1px solid var(--border)"></span>
+              <span style="padding:10px 12px"><span style="display:block;font-size:14px;font-weight:500">White</span><span class="mono" style="font-size:12px;color:var(--muted)">{{lblW}}</span></span>
+            </button>
+          </div>
+          <h2 id="gradients" style="margin:48px 0 8px;font-size:24px;font-weight:500;letter-spacing:-0.02em">Gradients</h2>
+          <p style="margin:0 0 20px;font-size:16px;line-height:1.7;color:var(--muted)">Examples built from the palette. Confirm exact stops against the brand skill before use.</p>
+          <div class="grid2" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px">
+            <div style="height:88px;border-radius:12px;background:linear-gradient(90deg,#0047ff,#00e297)"></div>
+            <div style="height:88px;border-radius:12px;background:linear-gradient(90deg,#000f9f,#0047ff)"></div>
+          </div>
+        </sc-if>
+
+        <!-- ============ TYPOGRAPHY ============ -->
+        <sc-if value="{{isType}}" hint-placeholder-val="{{ false }}">
+          <h2 id="family" style="margin:48px 0 16px;font-size:24px;font-weight:500;letter-spacing:-0.02em">MarkOT</h2>
+          <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:28px;border:1px solid var(--border);border-radius:12px;background:var(--surface)">
+            <span style="font-size:96px;line-height:1;font-weight:700;letter-spacing:-0.04em">Aa</span>
+            <span style="max-width:300px;font-size:14px;line-height:1.6;color:var(--muted)">Licensed to Uplight. Use for internal work and brand output only.</span>
+          </div>
+          <h2 id="weights" style="margin:48px 0 16px;font-size:24px;font-weight:500;letter-spacing:-0.02em">Weights</h2>
+          <div style="display:flex;flex-direction:column;border:1px solid var(--border);border-radius:12px;overflow:hidden">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:18px 20px;border-bottom:1px solid var(--border)"><span style="font-size:26px;font-weight:400">Clean energy, simply managed</span><span class="mono" style="font-size:12px;color:var(--muted)">Book · 400</span></div>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:18px 20px;border-bottom:1px solid var(--border)"><span style="font-size:26px;font-weight:500">Clean energy, simply managed</span><span class="mono" style="font-size:12px;color:var(--muted)">Medium · 500</span></div>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:18px 20px"><span style="font-size:26px;font-weight:700">Clean energy, simply managed</span><span class="mono" style="font-size:12px;color:var(--muted)">Bold · 700</span></div>
+          </div>
+          <h2 id="scale" style="margin:48px 0 16px;font-size:24px;font-weight:500;letter-spacing:-0.02em">Scale</h2>
+          <p style="margin:0 0 16px;font-size:15px;line-height:1.65;color:var(--muted)">The scale used by this Labs site.</p>
+          <div style="display:flex;flex-direction:column;border:1px solid var(--border);border-radius:12px;overflow:hidden">
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:14px 20px;border-bottom:1px solid var(--border)"><span style="font-size:40px;font-weight:700;letter-spacing:-0.03em;line-height:1.1">Heading</span><span class="mono" style="font-size:12px;color:var(--muted)">40 / Bold</span></div>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:14px 20px;border-bottom:1px solid var(--border)"><span style="font-size:24px;font-weight:500;letter-spacing:-0.02em">Section title</span><span class="mono" style="font-size:12px;color:var(--muted)">24 / Medium</span></div>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:14px 20px;border-bottom:1px solid var(--border)"><span style="font-size:16px">Body copy reads at sixteen pixels.</span><span class="mono" style="font-size:12px;color:var(--muted)">16 / Book</span></div>
+            <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;padding:14px 20px"><span style="font-size:13px;color:var(--muted)">Caption and metadata</span><span class="mono" style="font-size:12px;color:var(--muted)">13 / Book</span></div>
+          </div>
+        </sc-if>
+
+        <!-- ============ SKILLS ============ -->
+        <sc-if value="{{isSkills}}" hint-placeholder-val="{{ false }}">
+          <h2 id="catalog" style="margin:48px 0 16px;font-size:24px;font-weight:500;letter-spacing:-0.02em">Catalog</h2>
+          <div style="overflow-x:auto;border:1px solid var(--border);border-radius:12px">
+            <div style="min-width:560px">
+              <div style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,2fr) 110px;gap:16px;padding:12px 20px;border-bottom:1px solid var(--border);background:var(--surface);font-size:12px;font-weight:500;letter-spacing:0.04em;text-transform:uppercase;color:var(--muted)"><span>Skill</span><span>What it does</span><span>Status</span></div>
+              <div style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,2fr) 110px;gap:16px;padding:16px 20px;border-bottom:1px solid var(--border);align-items:center">
+                <span style="font-size:15px;font-weight:500">Uplight UCC Brand</span>
+                <span style="font-size:14px;line-height:1.55;color:var(--muted)">Applies the UCC 2027 logo, morph mark and pattern, five-color palette, gradients and MarkOT type.</span>
+                <span style="display:inline-flex;align-items:center;gap:6px;font-size:13px"><span style="width:7px;height:7px;border-radius:99px;background:#00e297"></span>Available</span>
+              </div>
+              <div style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,2fr) 110px;gap:16px;padding:16px 20px;border-bottom:1px solid var(--border);align-items:center">
+                <span style="font-size:15px;color:var(--muted)">[Next skill]</span>
+                <span style="font-size:14px;color:var(--muted)">Description goes here.</span>
+                <span style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)"><span style="width:7px;height:7px;border-radius:99px;border:1px solid var(--borderStrong)"></span>Planned</span>
+              </div>
+              <div style="display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,2fr) 110px;gap:16px;padding:16px 20px;align-items:center">
+                <span style="font-size:15px;color:var(--muted)">[Next skill]</span>
+                <span style="font-size:14px;color:var(--muted)">Description goes here.</span>
+                <span style="display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--muted)"><span style="width:7px;height:7px;border-radius:99px;border:1px solid var(--borderStrong)"></span>Planned</span>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <!-- ============ COMING SOON (generic) ============ -->
+        <sc-if value="{{isSoon}}" hint-placeholder-val="{{ false }}">
+          <h2 id="ready" style="margin:48px 0 16px;font-size:24px;font-weight:500;letter-spacing:-0.02em">Ready for content</h2>
+          <div style="display:flex;flex-direction:column;align-items:flex-start;gap:8px;padding:32px;border:1px dashed var(--borderStrong);border-radius:12px;background:var(--surface)">
+            <span style="font-size:16px;font-weight:500">Nothing here yet</span>
+            <span style="max-width:460px;font-size:15px;line-height:1.65;color:var(--muted)">This page is part of the template. Add a short overview, then the guides, assets or examples that belong under it.</span>
+          </div>
+        </sc-if>
+
+        <!-- ============ PREV / NEXT ============ -->
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:64px">
+          <sc-if value="{{hasPrev}}" hint-placeholder-val="{{ false }}">
+            <button class="pagelink" onClick="{{goPrev}}"><span style="font-size:13px;color:var(--muted)">Previous</span><span style="font-size:16px;font-weight:500">← {{prevTitle}}</span></button>
+          </sc-if>
+          <sc-if value="{{hasNext}}" hint-placeholder-val="{{ true }}">
+            <button class="pagelink" onClick="{{goNext}}" style="text-align:right;align-items:flex-end"><span style="font-size:13px;color:var(--muted)">Next</span><span style="font-size:16px;font-weight:500">{{nextTitle}} →</span></button>
+          </sc-if>
+        </div>
+
+        <div style="margin-top:56px;padding-top:20px;border-top:1px solid var(--border);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:13px;color:var(--muted)">
+          <span>Uplight Labs · Internal</span>
+          <span>Built by the corporate marketing team</span>
+        </div>
+      </article>
+    </main>
+
+    <aside class="toc" aria-label="On this page">
+      <div style="font-size:13px;font-weight:500;margin-bottom:10px">On this page</div>
+      <sc-for list="{{toc}}" as="t" hint-placeholder-count="4">
+        <a class="tocitem" href="{{t.href}}">{{t.label}}</a>
+      </sc-for>
+    </aside>
+
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"theme":{"editor":"enum","default":"light","options":["light","dark"],"section":"Appearance"}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const st = this.state || {};
+    const pageId = st.page || 'intro';
+    const dark = st.dark !== undefined ? st.dark : (this.props.theme === 'dark');
+    const query = (st.query || '').trim().toLowerCase();
+    const copied = st.copied || '';
+
+    const pages = [
+      { id: 'intro', group: 'Get started', title: 'Introduction', kind: 'intro', desc: 'Uplight Labs is the central home for everything the marketing team builds: brand styles, Claude skills, products and templates.', toc: [['what', 'What is inside'], ['anatomy', 'Anatomy of a skill'], ['claude-flow', 'Built for Claude workflows'], ['access', 'Access']] },
+      { id: 'claude', group: 'Get started', title: 'Using Claude with Uplight', kind: 'claude', desc: 'How to put Uplight skills and brand rules to work in Claude so output stays consistent.', toc: [['steps', 'Three steps'], ['notes', 'Notes']] },
+      { id: 'contribute', group: 'Get started', title: 'Adding to Labs', kind: 'soon', soon: true, desc: 'How to submit a new skill, template or brand asset to Labs.', toc: [['ready', 'Ready for content']] },
+      { id: 'colors', group: 'Brand', title: 'Colors', kind: 'colors', desc: 'The Uplight palette and gradients, with values you can copy.', toc: [['palette', 'UCC 2027 palette'], ['gradients', 'Gradients']] },
+      { id: 'type', group: 'Brand', title: 'Typography', kind: 'type', desc: 'MarkOT weights and the type scale used across Uplight materials.', toc: [['family', 'MarkOT'], ['weights', 'Weights'], ['scale', 'Scale']] },
+      { id: 'logo', group: 'Brand', title: 'Logo', kind: 'soon', soon: true, desc: 'Logo files, clear space and usage rules.', toc: [['ready', 'Ready for content']] },
+      { id: 'skills', group: 'Skills', title: 'Catalog', kind: 'skills', desc: 'Every Claude skill Uplight maintains, with its current status.', toc: [['catalog', 'Catalog']] },
+      { id: 'products', group: 'Products', title: 'Overview', kind: 'soon', soon: true, desc: 'Product information and messaging, in one place.', toc: [['ready', 'Ready for content']] },
+      { id: 'templates', group: 'Library', title: 'Templates', kind: 'soon', soon: true, desc: 'Ready-to-use decks, pages and documents.', toc: [['ready', 'Ready for content']] },
+      { id: 'prompts', group: 'Library', title: 'Prompts', kind: 'soon', soon: true, desc: 'Tested prompts for common marketing tasks.', toc: [['ready', 'Ready for content']] },
+      { id: 'resources', group: 'Library', title: 'Resources', kind: 'soon', soon: true, desc: 'Links, guides and reference material.', toc: [['ready', 'Ready for content']] }
+    ];
+    const idx = Math.max(0, pages.findIndex((p) => p.id === pageId));
+    const cur = pages[idx];
+
+    const go = (id) => () => {
+      this.setState({ page: id, menuOpen: false, searchOpen: false, query: '' });
+      try { window.scrollTo(0, 0); } catch (e) {}
+    };
+    const copy = (key, text) => () => {
+      try { const p = navigator.clipboard.writeText(text); if (p && p.catch) p.catch(() => {}); } catch (e) {}
+      this.setState({ copied: key });
+      setTimeout(() => this.setState({ copied: '' }), 1600);
+    };
+
+    const groupNames = ['Get started', 'Brand', 'Skills', 'Products', 'Library'];
+    const groups = groupNames.map((g) => ({
+      label: g,
+      items: pages.filter((p) => p.group === g).map((p) => ({ title: p.title, soon: !!p.soon, cls: p.id === cur.id ? 'active' : '', go: go(p.id) }))
+    }));
+
+    const topDefs = [['Docs', 'intro', 'Get started'], ['Brand', 'colors', 'Brand'], ['Skills', 'skills', 'Skills'], ['Products', 'products', 'Products']];
+    const topNav = topDefs.map((t) => ({ label: t[0], cls: cur.group === t[2] ? 'active' : '', go: go(t[1]) }));
+
+    const results = pages
+      .filter((p) => !query || (p.title + ' ' + p.group + ' ' + p.desc).toLowerCase().includes(query))
+      .slice(0, 8)
+      .map((p) => ({ title: p.title, group: p.group, desc: p.desc.length > 60 ? p.desc.slice(0, 58) + '…' : p.desc, go: go(p.id) }));
+
+    const cards = [
+      { title: 'Brand styles', text: 'Colors, typography and logo guidance.', icon: 'M12 3a9 9 0 1 0 0 18c1.1 0 2-.9 2-2 0-.5-.2-1-.5-1.3-.3-.3-.5-.8-.5-1.2 0-1.1.9-2 2-2h2.3c2 0 3.7-1.7 3.7-3.7C21 7 17 3 12 3z', go: go('colors') },
+      { title: 'Skills', text: 'Packaged instructions that teach Claude how Uplight works.', icon: 'M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z', go: go('skills') },
+      { title: 'Products', text: 'Product facts and messaging.', icon: 'M21 8l-9-5-9 5v8l9 5 9-5V8zM3.3 7.5L12 12.5l8.7-5M12 22V12.5', go: go('products') },
+      { title: 'Templates', text: 'Starting points for decks, pages and documents.', icon: 'M3 3h18v18H3zM3 9h18M9 21V9', go: go('templates') },
+      { title: 'Prompts', text: 'Tested prompts for everyday marketing work.', icon: 'M21 15a2 2 0 0 1-2 2H8l-5 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z', go: go('prompts') },
+      { title: 'Resources', text: 'Guides, links and reference material.', icon: 'M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14zM4 19.5A2.5 2.5 0 0 0 6.5 22H20v-5', go: go('resources') }
+    ];
+
+    const hex = (key, v) => (copied === key ? 'Copied' : v);
+    const prev = pages[idx - 1];
+    const next = pages[idx + 1];
+
+    return {
+      themeClass: dark ? 'dark' : 'light',
+      isDark: dark,
+      isLight: !dark,
+      sideClass: st.menuOpen ? 'open' : '',
+      toggleMenu: () => this.setState({ menuOpen: !st.menuOpen }),
+      toggleTheme: () => this.setState({ dark: !dark }),
+      toggleSearch: () => this.setState({ searchOpen: !st.searchOpen, query: '' }),
+      onQuery: (e) => this.setState({ query: e && e.target ? e.target.value : '' }),
+      searchOpen: !!st.searchOpen,
+      results,
+      noResults: results.length === 0,
+      topNav,
+      groups,
+      goHome: go('intro'),
+      goClaude: go('claude'),
+      cards,
+      toc: cur.toc.map((t) => ({ href: '#' + t[0], label: t[1] })),
+      pageTitle: cur.title,
+      pageGroup: cur.group,
+      pageDesc: cur.desc,
+      isIntro: cur.kind === 'intro',
+      isClaude: cur.kind === 'claude',
+      isColors: cur.kind === 'colors',
+      isType: cur.kind === 'type',
+      isSkills: cur.kind === 'skills',
+      isSoon: cur.kind === 'soon',
+      copyPage: copy('page', '# ' + cur.title + '\n\n' + cur.desc + '\n'),
+      copyPageLabel: copied === 'page' ? 'Copied' : 'Copy page',
+      copyTree: copy('tree', 'uplight-brand/\n├── SKILL.md\n├── assets/\n└── references/'),
+      treeLabel: copied === 'tree' ? 'Copied' : 'Copy',
+      copyG: copy('g', '#00e297'), lblG: hex('g', '#00e297'),
+      copyB: copy('b', '#0047ff'), lblB: hex('b', '#0047ff'),
+      copyN: copy('n', '#000f9f'), lblN: hex('n', '#000f9f'),
+      copyK: copy('k', '#000000'), lblK: hex('k', '#000000'),
+      copyW: copy('w', '#ffffff'), lblW: hex('w', '#ffffff'),
+      hasPrev: !!prev, prevTitle: prev ? prev.title : '', goPrev: prev ? go(prev.id) : () => {},
+      hasNext: !!next, nextTitle: next ? next.title : '', goNext: next ? go(next.id) : () => {}
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+# MarkOT is licensed for internal Uplight use only. Never commit font files.
+assets/fonts/*
+!assets/fonts/README.md
+.DS_Store
